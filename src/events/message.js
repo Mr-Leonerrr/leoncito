@@ -1,26 +1,30 @@
-const client = require('../index.js');
+const client = require('../index');
 
 client.on('message', onMessageHandler);
 
-function onMessageHandler(channel, user, message, _self) {
-	if (_self || !message.startsWith(';')) return;
+async function onMessageHandler(channel, user, content, _self) {
+	console.log('Channel props: ', channel);
+	console.log('User props: ', user);
+	console.log('Message props: ', content);
+	console.log('Self props: ', _self);
+
+	if (_self || !content.trimStart().startsWith(client.config.prefix)) return;
 
 	// Remove whitespace from chat message
-	const commandName = message.toLowerCase().trim();
+	const args = content.slice(client.config.prefix.length).trim().split(/ +/);
+	const commandName = args.shift().toLowerCase();
 
-	// If the command is known, let's execute it
-	if (commandName === ';dice') {
-		const num = rollDice();
-		client.say(channel, `You rolled a ${num}`).then(() => {
-			console.log(`* Executed ${commandName} command`);
-		}).catch((err) => console.log(err));
-	} else {
-		console.log(`* Unknown command ${commandName}`);
+	const command = client.commands.get(commandName) || client.commands.get(client.aliases.get(commandName));
+
+	if (!command || !command.config.enabled) return;
+
+	if (command.config.args && !args.length) {
+		return console.log('No args provided');
 	}
-}
 
-// Function called when the "dice" command is issued
-function rollDice() {
-	const sides = 6;
-	return Math.floor(Math.random() * sides) + 1;
+	try {
+		await command.run(channel, user, content);
+	} catch (error) {
+		console.error('Error in command execution', error);
+	}
 }

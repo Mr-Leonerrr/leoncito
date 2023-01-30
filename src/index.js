@@ -1,25 +1,11 @@
 require('dotenv').config();
-const tmi = require('tmi.js');
-const config = require('./utils/config.json');
 
-// Define configuration options
-const opts = {
-	options: {
-		debug: true,
-	},
-	identity: {
-		username: 'leoncitobot',
-		password: `oauth:${process.env.CLIENT_TOKEN}`,
-	},
-	channels: config.channels,
-	reconnectInterval: 5000,
+const Leoncito = require('./structures/Leoncito');
+module.exports = client = new Leoncito();
+
+const init = async () => {
+	await require('./functions/handler')();
+	client.connect().catch((err) => console.log('Init error', err));
 };
 
-// Create a client with our options
-const client = new tmi.client(opts);
-
-module.exports = client;
-
-require('./functions/handler')().then(() => {
-	client.connect().catch((err) => console.log(err));
-});
+init().then(() => console.log('Bot is ready!'));
