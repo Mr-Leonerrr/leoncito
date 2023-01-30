@@ -1,0 +1,9 @@
+# Code editors and IDEs
+.idea
+.vscode
+
+# Project dependencies and build files
+node_modules
+
+# Environment variables
+.env
