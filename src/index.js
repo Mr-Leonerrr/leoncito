@@ -12,6 +12,9 @@ const init = async () => {
 	await mongoose.default.connect(process.env.MONGODB_URI, {
 		dbName: 'leoncito',
 	}, () => console.log('MongoDB connected!'));
+
+	const locales = require('./utils/locales');
+	client.translations = await locales();
 };
 
 init().then(() => console.log('Bot is ready!'));
