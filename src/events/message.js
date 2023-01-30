@@ -3,11 +3,6 @@ const client = require('../index');
 client.on('message', onMessageHandler);
 
 async function onMessageHandler(channel, user, content, _self) {
-	console.log('Channel props: ', channel);
-	console.log('User props: ', user);
-	console.log('Message props: ', content);
-	console.log('Self props: ', _self);
-
 	if (_self || !content.trimStart().startsWith(client.config.prefix)) return;
 
 	// Remove whitespace from chat message

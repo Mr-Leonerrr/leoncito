@@ -1,0 +1,29 @@
+[
+  {
+	"name": "en-US",
+	"nativeName": "English",
+	"defaultMomentFormat": "MMMM Do YYYY",
+	"moment": "en",
+	"default": true,
+	"aliases": [
+	  "English",
+	  "en",
+	  "en-us",
+	  "en_us",
+	  "en_US"
+	]
+  },
+  {
+	"name": "es-ES",
+	"nativeName": "Español",
+	"defaultMomentFormat": "MMM Do, YYYY",
+	"moment": "es",
+	"default": false,
+	"aliases": [
+	  "Spanish",
+	  "es",
+	  "es_es",
+	  "es_ES"
+	]
+  }
+]
