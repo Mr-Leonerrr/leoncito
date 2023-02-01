@@ -1,0 +1,7 @@
+{
+  "DESCRIPTION": "Cambia el idioma en el que respondo.",
+  "USAGE": "language [idioma]",
+  "AVAILABLE_LANGUAGES": "Idiomas disponibles:",
+  "MISSING_LANG": "La clave de idioma ingresada no es válida. Puedes ver los idiomas disponibles con: `{{prefix}}language list`",
+  "SUCCESS": "BloodTrail Ahora voy a estar respondiendo en: {{lang}}"
+}

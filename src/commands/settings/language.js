@@ -2,16 +2,17 @@ const Command = require('../../structures/Command');
 const ChannelConfig = require('../../schemas/ChannelConfigSchema');
 
 class Language extends Command {
-  constructor (client) {
+  constructor(client) {
     super(client, {
       name: 'language',
-      description: 'Change the language of the bot',
       aliases: ['lang'],
+      description: 'Change the language of the bot',
+      disabled: true,
       moderatorOnly: true,
     });
   }
 
-  async run (channel, { args }) {
+  async run(channel, { args }) {
     const channelName = channel.slice(1);
     const availableLocale = this.client.locales;
     const lang = availableLocale.find((l) => l.name === args[0] || l.aliases.includes(args[0]));
@@ -33,7 +34,7 @@ class Language extends Command {
       await channelData.save();
     }
 
-    await this.client.say(channel, `/me Language changed to ${channelData.locale}`);
+    await this.client.say.translate('settings/setlang::SUCCESS', { lang: `${lang.nativeName}` });
   }
 }
 

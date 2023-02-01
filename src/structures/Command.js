@@ -1,22 +1,22 @@
 /**
  * @class Command
  * @property {Leoncito} client
- * @property {Object} config
- * @property {Boolean} config.enabled
- * @property {Boolean} config.dmResolvable
- * @property {Boolean} config.args
- * @property {Boolean} config.ownerOnly
- * @property {Boolean} config.moderatorOnly
  * @property {Object} help
  * @property {String} help.name
  * @property {String} help.description
  * @property {String[]} help.aliases
+ * @property {Object} config
+ * @property {Boolean} config.disabled
+ * @property {Boolean} config.dmResolvable
+ * @property {Boolean} config.args
+ * @property {Boolean} config.ownerOnly
+ * @property {Boolean} config.moderatorOnly
  */
 class Command {
-  constructor (client, { name, aliases, description, enabled, dmResolvable, args, ownerOnly, moderatorOnly }) {
+  constructor(client, { name, description, aliases, disabled, dmResolvable, args, ownerOnly, moderatorOnly }) {
     this.client = client;
     this.config = {
-      enabled: enabled || true,
+      disabled: disabled || false,
       dmResolvable: dmResolvable || false,
       args: args || false,
       ownerOnly: ownerOnly || false,

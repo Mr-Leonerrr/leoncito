@@ -36,6 +36,8 @@ module.exports = async () => {
 
   const { namespaces, locales } = await walkDirectory(path.resolve(__dirname, '../locales/'));
 
+  await i18n.use(Backend);
+
   await i18n.init({
     backend: options,
     debug: false,

@@ -6,7 +6,7 @@ const path = require('path');
  * @class Leoncito
  */
 class Leoncito extends client {
-  constructor () {
+  constructor() {
     super({
       options: {
         debug: true,
@@ -27,18 +27,18 @@ class Leoncito extends client {
     this.locales = require('../locales/locales-meta.json');
   }
 
-  get defaultLocale () {
+  get defaultLocale() {
     return this.locales.find((locale) => locale.default).name;
   }
 
-  translate (key, args, locale) {
+  translate(key, args, locale) {
     if (!locale) locale = this.defaultLocale;
     const localeData = this.locales.get(locale);
     if (!localeData) throw 'Invalid locale set in data.';
     return locale(key, args);
   }
 
-  loadCommand (commandPath, commandName) {
+  loadCommand(commandPath, commandName) {
     try {
       const props = new (require(`.${commandPath}${path.sep}${commandName}`))(this);
       props.config.location = commandPath;
@@ -50,7 +50,7 @@ class Leoncito extends client {
         this.aliases.set(alias, props.help.name);
       });
       return false;
-    } catch (e) {
+    } catch(e) {
       return `Unable to load command ${commandName}: ${e}`;
     }
   }

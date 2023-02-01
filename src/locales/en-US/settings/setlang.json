@@ -1,0 +1,7 @@
+{
+  "DESCRIPTION": "Change the language in which I reply.",
+  "USAGE": "language [language]",
+  "AVAILABLE_LANGUAGES": "Available languages:",
+  "MISSING_LANG": "Invalid language key provided. You can list available languages with: `{{prefix}}language list`",
+  "SUCCESS": "BloodTrail I will now be replying in: {{lang}}"
+}
